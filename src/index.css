@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  background-color: rgb(255, 255, 255);
+  color: #000000;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.container {
+  background-image: url('https://img.texasmonthly.com/2017/11/Big-Bend-Ranch-State-Park.jpg?auto=compress&crop=faces&fit=crop&fm=jpg&h=1400&ixlib=php-3.3.1&q=45&w=1400');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.child {
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+
+.child--absolute {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: absolute;
+  top: 0;
+  left: 0;
+  clip-path: polygon(100% -180%, 50% 100%, 100% 100%);
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.grid>div {
+  position: relative;
+  background: #ff6200;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  text-align: center;
+  padding: 1rem;
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.grid>div::before,
+.grid>div::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1);
+}
+
+.grid>div:hover {
+  transform: scale(1.05);
+}
+
+.grid>div:hover::before {
+  transform: translateX(-100%);
+}
+
+.grid>div:hover::after {
+  transform: translateY(-100%);
+}
+
+@media (max-width: 640px) {
+  .child--absolute {
+    display: block;
+  }
+}
